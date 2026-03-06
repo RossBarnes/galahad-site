@@ -4,7 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galahad — Serious AI for Serious Decisions</title>
+<meta name="description" content="Galahad helps boards, CMOs, and transformation teams build, deploy, and govern AI that earns its place. AI consulting, education, marketing strategy, and products — founded by Ross Barnes.">
+<link rel="canonical" href="https://galahad.ai/">
+<!-- Open Graph -->
+<meta property="og:title" content="Galahad — Serious AI for Serious Decisions">
+<meta property="og:description" content="AI consulting, education, marketing strategy, and products for boards, CMOs, and transformation teams. Founded by Ross Barnes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://galahad.ai/">
+<meta property="og:image" content="https://galahad.ai/images/ross-headshot.jpg">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Galahad — Serious AI for Serious Decisions">
+<meta name="twitter:description" content="AI consulting, education, marketing strategy, and products for boards, CMOs, and transformation teams.">
+<meta name="twitter:image" content="https://galahad.ai/images/ross-headshot.jpg">
 <link rel="stylesheet" href="css/galahad.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Galahad",
+      "url": "https://galahad.ai",
+      "logo": "https://galahad.ai/images/ross-headshot.jpg",
+      "description": "AI consulting, education, marketing strategy, and products for boards, CMOs, and transformation teams.",
+      "founder": { "@type": "Person", "name": "Ross Barnes" },
+      "foundingLocation": { "@type": "Place", "name": "London" },
+      "sameAs": ["https://www.linkedin.com/in/rossbarnes/"]
+    },
+    {
+      "@type": "Person",
+      "name": "Ross Barnes",
+      "jobTitle": "Founder",
+      "worksFor": { "@type": "Organization", "name": "Galahad" },
+      "knowsAbout": ["Artificial Intelligence", "AI Governance", "Marketing Strategy", "Digital Transformation", "GEO"],
+      "url": "https://www.linkedin.com/in/rossbarnes/"
+    },
+    {
+      "@type": "WebSite",
+      "name": "Galahad",
+      "url": "https://galahad.ai"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -28,6 +71,9 @@
     <a href="#roundtable">Round Table</a>
     <a href="#contact" class="nav-cta">Work With Us →</a>
   </div>
+  <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -509,7 +555,7 @@
           <h4>Why your AI governance framework is already outdated</h4>
           <p>Most governance frameworks were written for a world of single-model deployments and human-in-the-loop workflows. Agentic AI breaks every assumption they're built on. Here's what needs to change.</p>
           <div class="rt-article-tags"><span class="rt-tag">governance</span><span class="rt-tag">strategy</span></div>
-          <a href="#" class="rt-article-link">Read more →</a>
+          <a href="#contact" class="rt-article-link">Discuss this →</a>
         </div>
         <div class="rt-article-card">
           <div class="rt-article-meta">
@@ -519,7 +565,7 @@
           <h4>The 90-day AI audit: what to measure, what to ignore</h4>
           <p>After 90 days, most AI projects have either proven their value or revealed their flaws. Here's the framework Galahad uses to separate signal from sunk cost.</p>
           <div class="rt-article-tags"><span class="rt-tag">frameworks</span><span class="rt-tag">measurement</span></div>
-          <a href="#" class="rt-article-link">Read more →</a>
+          <a href="#contact" class="rt-article-link">Discuss this →</a>
         </div>
       </div>
       <div class="rt-signals" id="rt-signals">
@@ -569,7 +615,7 @@
       <h4>${post.title}</h4>
       <p>${post.excerpt || post.body}</p>
       ${post.tags ? `<div class="rt-article-tags">${post.tags.map(t => `<span class="rt-tag">${t}</span>`).join('')}</div>` : ''}
-      ${post.url ? `<a href="${post.url}" class="rt-article-link">Read more →</a>` : ''}
+      ${post.url ? `<a href="${post.url}" class="rt-article-link">Read more →</a>` : `<a href="#contact" class="rt-article-link">Discuss this →</a>`}
     </div>`;
   }
 
@@ -611,46 +657,46 @@
       to help — and if we're not, we'll say so.
     </p>
   </div>
-  <div class="contact-form" style="max-width:800px; margin:48px auto 0;">
+  <form class="contact-form" style="max-width:800px; margin:48px auto 0;" action="https://formspree.io/f/xpwddjbk" method="POST">
     <div class="form-row">
       <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" placeholder="Jane Smith">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Jane Smith" required>
       </div>
       <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="jane@company.com">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
-        <label>Organisation</label>
-        <input type="text" placeholder="Company name">
+        <label for="organisation">Organisation</label>
+        <input type="text" id="organisation" name="organisation" placeholder="Company name">
       </div>
       <div class="form-group">
-        <label>What are you looking for?</label>
-        <select>
+        <label for="service">What are you looking for?</label>
+        <select id="service" name="service">
           <option value="">Select a service...</option>
-          <option>Galahad Consulting — AI Strategy or Diagnostic</option>
-          <option>Galahad Consulting — Marketing AI Strategy</option>
-          <option>Galahad Learning — Workshop or Training</option>
-          <option>Galahad AI — Build Project or Automation</option>
-          <option>Galahad Labs — Grail (GEO / AI Authority)</option>
-          <option>Galahad Labs — Lancelot (Ad Fraud / MFA Detection)</option>
-          <option>Galahad Learning — Enable (AI Career Sprint)</option>
-          <option>Speaking or Keynote Enquiry</option>
-          <option>Something else</option>
+          <option value="consulting-strategy">Galahad Consulting — AI Strategy or Diagnostic</option>
+          <option value="consulting-marketing">Galahad Consulting — Marketing AI Strategy</option>
+          <option value="learning-workshop">Galahad Learning — Workshop or Training</option>
+          <option value="ai-build">Galahad AI — Build Project or Automation</option>
+          <option value="labs-grail">Galahad Labs — Grail (GEO / AI Authority)</option>
+          <option value="labs-lancelot">Galahad Labs — Lancelot (Ad Fraud / MFA Detection)</option>
+          <option value="learning-enable">Galahad Learning — Enable (AI Career Sprint)</option>
+          <option value="speaking">Speaking or Keynote Enquiry</option>
+          <option value="other">Something else</option>
         </select>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group form-full">
-        <label>Tell us more</label>
-        <textarea placeholder="What's the challenge? What have you already tried? What does good look like?"></textarea>
+        <label for="message">Tell us more</label>
+        <textarea id="message" name="message" placeholder="What's the challenge? What have you already tried? What does good look like?"></textarea>
       </div>
     </div>
-    <button class="form-submit">Send Message →</button>
-  </div>
+    <button type="submit" class="form-submit">Send Message →</button>
+  </form>
 </section>
 
 <!-- ─── FOOTER ─── -->

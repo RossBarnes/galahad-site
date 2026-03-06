@@ -404,4 +404,5 @@
   .nav-breadcrumb { display: none; }
   .dashboard-tabs { gap: 8px; }
   .dashboard-tab { padding: 6px 14px; font-size: 0.75rem; }
+  .nav-hamburger { display: flex; }
 }
