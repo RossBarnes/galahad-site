@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lancelot — Galahad Labs | Ad Fraud & MFA Risk Detection</title>
+<link rel="stylesheet" href="css/galahad.css">
+<link rel="stylesheet" href="css/product.css">
+</head>
+<body class="theme-gold">
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div style="display:flex;align-items:center;">
+    <a href="index.html" class="logo">
+      <svg width="210" height="40" viewBox="0 0 210 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L26,0 L26,24 C26,33 13,39 13,39 C13,39 0,33 0,24 Z" fill="#c8102e"/>
+        <text x="4" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#ffffff" letter-spacing="-1">G</text>
+        <text x="21.5" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#0a0a0a" letter-spacing="-1">ALAHAD</text>
+      </svg>
+    </a>
+    <div class="nav-breadcrumb">
+      <span class="nav-sep">/</span>
+      <span class="nav-product" style="color: var(--labs)">Lancelot</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Capabilities</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#integration">API</a>
+    <a href="index.html">Galahad Home</a>
+    <a href="#cta" class="nav-cta" style="background:var(--labs);color:var(--ink)">Get a Demo →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="product-hero">
+  <div class="product-hero-inner">
+    <div class="product-eyebrow"><span></span>Galahad Labs</div>
+    <h1>See the fraud<br><span class="accent-gold">before it costs you.</span></h1>
+    <p class="sub">Lancelot detects ad fraud and MFA risk at the domain level. Async crawling, signal extraction, deterministic scoring. No black boxes.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary" style="background:var(--labs);color:var(--ink)">Get a Demo →</a>
+      <a href="#features" class="btn-secondary">See Capabilities</a>
+    </div>
+  </div>
+  <div class="hero-bg-word">Lancelot</div>
+</section>
+
+<!-- ─── PROOF BAR ─── -->
+<div class="proof-bar">
+  Built for ad networks, publishers, brands, and security teams protecting against fraudulent ad partners.
+</div>
+
+<!-- ─── PROBLEM ─── -->
+<section class="problem" id="problem">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Ad fraud costs billions.<br>Most detection is reactive.</h2>
+    <p class="section-intro">Made-for-advertising sites siphon budgets. Blocklists go stale overnight. And most scoring systems are opaque. Lancelot changes that.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <h4>MFA sites drain budgets</h4>
+        <p>Made-for-advertising domains are engineered to absorb ad spend. They mimic real publishers with high ad density, low-value content, and artificial traffic patterns.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📋</div>
+        <h4>Blocklists go stale</h4>
+        <p>Static domain lists can't keep pace with the rate of new fraud domains. By the time a domain is blocklisted, the damage is done and the fraudsters have moved on.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔒</div>
+        <h4>Scoring is a black box</h4>
+        <p>Most fraud detection tools won't show you how scores are calculated. No signal breakdown, no audit trail. You're trusting a verdict you can't verify.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="features" id="features">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Crawl. Extract. Score. Act.</h2>
+    <p class="section-intro">A distributed system that continuously crawls suspect domains, extracts page-level signals, and computes auditable risk scores.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h4>Async Domain Crawler</h4>
+        <p>Distributed, fault-tolerant crawling across your entire domain list. Workers claim tasks independently — scale by adding capacity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h4>Signal Extraction Engine</h4>
+        <p>Analyses script counts, iframe density, ad network markers, header bidding presence, link ratios, and content quality signals per page.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h4>Domain-Level Risk Scoring</h4>
+        <p>Weighted signal aggregation produces a deterministic risk score. Same domain, same signals, same score. Fully auditable and explainable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗄️</div>
+        <h4>Postgres-Backed Task Queue</h4>
+        <p>Lock-free distributed work claiming with full observability. Every crawl result, every score, every timestamp stored and queryable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h4>REST API</h4>
+        <p>Submit domains, retrieve scores, get signal breakdowns. Integrate Lancelot scoring directly into your ad operations or buy-side platform.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h4>Real-Time Dashboard</h4>
+        <p>Domain list with risk scores, crawl history, signal breakdowns. Monitor your network continuously and catch drift before it becomes damage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="pipeline" id="how-it-works">
+  <div class="pipeline-grid">
+    <div>
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From domain list<br>to risk intelligence.</h2>
+      <div class="divider"></div>
+      <p class="section-intro" style="margin-bottom:0;">Lancelot takes a list of suspect domains and returns scored, auditable risk assessments with full signal breakdowns.</p>
+
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Submit Domains</h4>
+            <p>Upload via API or dashboard. Seed from a file or add individual domains. Lancelot queues them for async processing.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Distributed Crawl</h4>
+            <p>Workers claim domains from the task queue and fetch pages. Fault-tolerant by design — failed crawls are re-queued automatically.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Extract Signals</h4>
+            <p>Each page is analysed for MFA markers: ad density, script injection, redirect chains, content quality, and network fingerprints.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Score Deterministically</h4>
+            <p>Signals are aggregated with weighted scoring. The result is a domain-level risk score with a full breakdown of contributing factors.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h4>Monitor & Act</h4>
+            <p>View results in the dashboard or pull via API. Track score drift over time. Flag high-risk domains before they enter your ad supply chain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-cta-box">
+      <h3>See Lancelot run<br>on your domains.</h3>
+      <p>Book a technical demo. We'll crawl a sample of your domain list live and walk through the scoring methodology.</p>
+      <a href="#cta">Book a Demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INTEGRATION ─── -->
+<section class="integration" id="integration">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Integration</div>
+    <h2 class="section-title">Fits your stack.<br>No vendor lock-in.</h2>
+    <p class="section-intro">A clean REST API lets you integrate Lancelot scoring directly into your ad operations, buy-side platform, or internal tooling.</p>
+    <div class="integration-grid">
+      <div>
+        <h4 style="font-size:1rem;font-weight:700;margin-bottom:12px;">Key Endpoints</h4>
+        <ul class="pricing-features" style="margin-bottom:24px;">
+          <li><strong>POST /v1/domains</strong> — Submit domains to crawl</li>
+          <li><strong>GET /v1/domains/{id}</strong> — Get score + signal breakdown</li>
+          <li><strong>GET /v1/domains/{id}/history</strong> — Score history over time</li>
+          <li><strong>GET /dashboard</strong> — Web dashboard</li>
+          <li><strong>GET /docs</strong> — OpenAPI documentation</li>
+        </ul>
+        <p style="font-size:0.88rem;color:var(--mid);line-height:1.65;">Batch import via file upload. Webhook notifications on crawl completion. Full OpenAPI spec available on request.</p>
+      </div>
+      <div class="code-block">
+        <pre><span class="code-comment"># Submit domains for crawling</span>
+<span class="code-method">POST</span> /v1/domains
+<span class="code-key">Content-Type</span>: application/json
+
+{
+  <span class="code-key">"domains"</span>: [
+    <span class="code-string">"suspect-site.com"</span>,
+    <span class="code-string">"another-domain.net"</span>
+  ]
+}
+
+<span class="code-comment"># Response</span>
+{
+  <span class="code-key">"queued"</span>: 2,
+  <span class="code-key">"job_id"</span>: <span class="code-string">"lnc_8f3a..."</span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing" id="pricing">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Access</div>
+    <h2 class="section-title">Priced by volume.<br>Transparent from day one.</h2>
+    <p class="section-intro">Lancelot pricing scales with your domain monitoring needs. No hidden fees, no per-query surprises.</p>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <h4>Starter</h4>
+        <div class="pricing-amount" style="font-size:1.8rem;letter-spacing:-1px;">Starter</div>
+        <div class="pricing-period">Up to 1,000 domains/month</div>
+        <p class="pricing-desc">For teams getting started with ad fraud monitoring. Dashboard, API, and core scoring.</p>
+        <ul class="pricing-features">
+          <li>Up to 1,000 domains/month</li>
+          <li>Dashboard access</li>
+          <li>REST API</li>
+          <li>Signal breakdown per domain</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#cta" class="pricing-cta outlined">Get Started →</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <h4>Scale</h4>
+        <div class="pricing-amount" style="font-size:1.8rem;letter-spacing:-1px;">Scale</div>
+        <div class="pricing-period">Up to 10,000 domains/month</div>
+        <p class="pricing-desc">For ad networks and publishers monitoring at scale. Priority crawling and SLA guarantees.</p>
+        <ul class="pricing-features">
+          <li>Up to 10,000 domains/month</li>
+          <li>Priority crawl queue</li>
+          <li>Webhook notifications</li>
+          <li>Score history & drift alerts</li>
+          <li>Priority support with SLA</li>
+        </ul>
+        <a href="#cta" class="pricing-cta primary">Request Scale Access →</a>
+      </div>
+
+      <div class="pricing-card">
+        <h4>Enterprise</h4>
+        <div class="pricing-amount" style="font-size:1.8rem;letter-spacing:-1px;">Custom</div>
+        <div class="pricing-period">Unlimited volume</div>
+        <p class="pricing-desc">For enterprise ad operations and security teams. Dedicated infrastructure and custom integration.</p>
+        <ul class="pricing-features">
+          <li>Unlimited domains</li>
+          <li>Dedicated crawl infrastructure</li>
+          <li>Custom scoring models</li>
+          <li>On-premise deployment option</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="index.html#contact" class="pricing-cta outlined">Contact Us →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions.</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">How is the risk score calculated?</div>
+        <div class="faq-answer">Lancelot extracts page-level signals — script counts, ad network markers, iframe density, link ratios, content quality — and aggregates them with weighted scoring. The formula is deterministic: same signals, same score. Every factor is visible in the signal breakdown.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What signals does Lancelot extract?</div>
+        <div class="faq-answer">Script and iframe counts, Google Ad Manager and AdSense markers, header bidding presence, ad-related keyword density, link-to-content ratios, word count, and redirect chain analysis. More signals are added as fraud patterns evolve.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I use the API without the dashboard?</div>
+        <div class="faq-answer">Yes. The REST API is fully independent. Submit domains, retrieve scores, and get signal breakdowns programmatically. The dashboard is optional — use whichever interface fits your workflow.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What's the crawl latency?</div>
+        <div class="faq-answer">Depends on queue depth and domain count. Typical single-domain crawl completes in under 30 seconds. Batch imports are processed asynchronously — webhook notifications fire on completion.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How does this compare to existing ad verification tools?</div>
+        <div class="faq-answer">Most verification tools are black boxes — you get a verdict but can't see the methodology. Lancelot is fully transparent: every signal is visible, every score is reproducible, and the codebase is auditable. You trust the data because you can verify it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="product-cta" id="cta">
+  <div style="max-width:700px;margin:0 auto;">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Stop funding fraud.<br>Start with a demo.</h2>
+    <p class="section-intro" style="margin-left:auto;margin-right:auto;">See Lancelot run on your domain list. We'll walk you through the scoring methodology and show you what your network looks like.</p>
+    <div class="hero-actions">
+      <a href="index.html#contact" class="btn-primary" style="background:var(--labs);color:var(--ink)">Get a Demo →</a>
+      <a href="index.html#contact" class="btn-secondary">Contact the Team</a>
+    </div>
+    <p class="trust-note">Deterministic scoring. Full signal transparency. No black boxes.</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">G<em>alahad</em></div>
+      <div class="footer-tagline">Serious AI for serious decisions. · Founded by Ross Barnes</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#brands">Services</a>
+      <a href="enable.html">Enable</a>
+      <a href="grail.html">Grail</a>
+      <a href="lancelot.html">Lancelot</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Galahad. All rights reserved.</span>
+    <span>London · Global</span>
+  </div>
+</footer>
+
+</body>
+</html>
