@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galahad — Serious AI for Serious Decisions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:      #0a0a0a;
+    --slate:    #1a1a2e;
+    --mid:      #555568;
+    --light:    #8888a0;
+    --bg:       #fafafa;
+    --white:    #ffffff;
+    --red:      #c8102e;
+    --red2:     #e63946;
+    --border:   #e5e5ea;
+    --card:     #ffffff;
+
+    /* sub-brand colours */
+    --consulting: #1d3557;
+    --learning: #2a7d4f;
+    --ai:       #c8102e;
+    --labs:     #d4a843;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: var(--ink); line-height: 1.6; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 72px;
+  }
+  .logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .logo em { color: var(--red); font-style: normal; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid); font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: #fff;
+    padding: 10px 22px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 64px 80px;
+    position: relative; overflow: hidden;
+    background: #fff;
+    gap: 48px;
+  }
+  .hero-inner { max-width: 760px; position: relative; z-index: 2; }
+  .hero-image {
+    position: relative; z-index: 2;
+    display: flex; justify-content: flex-end; align-items: center;
+  }
+  .hero-image img {
+    width: 100%; max-width: 440px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.12);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; color: var(--red);
+    background: rgba(200,16,46,0.07); padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow span { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+  .hero h1 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900; letter-spacing: -3px; line-height: 1.0;
+    color: var(--ink); margin-bottom: 28px;
+  }
+  .hero h1 .highlight { color: var(--red); }
+  .hero .sub {
+    font-size: 1.2rem; color: var(--mid); font-weight: 400;
+    max-width: 540px; line-height: 1.7; margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: #fff;
+    padding: 16px 32px; border-radius: 10px;
+    font-size: 0.95rem; font-weight: 700; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--red); }
+  .btn-secondary {
+    border: 1.5px solid var(--ink); color: var(--ink);
+    padding: 16px 32px; border-radius: 10px;
+    font-size: 0.95rem; font-weight: 600; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--ink); color: #fff; }
+  .hero-bg-word {
+    position: absolute; right: -60px; top: 50%;
+    transform: translateY(-50%) rotate(-4deg);
+    font-size: clamp(160px, 25vw, 320px); font-weight: 900;
+    letter-spacing: -10px; color: rgba(200,16,46,0.03);
+    user-select: none; white-space: nowrap; z-index: 1;
+  }
+
+  /* ─── LOGOS BAR ─── */
+  .logos-bar {
+    background: #f5f5f7; padding: 28px 64px;
+    display: flex; align-items: center;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .logos-label {
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--light); font-weight: 600; white-space: nowrap; margin-right: 48px;
+    min-width: 120px;
+  }
+  .logos-list { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
+  .logos-list span {
+    font-size: 0.88rem; font-weight: 700; color: #bbb;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 96px 64px; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; color: var(--red); margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    letter-spacing: -1.5px; line-height: 1.1; color: var(--ink);
+    max-width: 700px; margin-bottom: 20px;
+  }
+  .section-intro {
+    font-size: 1.05rem; color: var(--mid); max-width: 600px;
+    line-height: 1.75; margin-bottom: 56px;
+  }
+  .divider { width: 48px; height: 3px; background: var(--red); margin: 20px 0 48px; }
+
+  /* ─── ABOUT ─── */
+  .about { background: #fff; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start; max-width: 1100px; margin: 0 auto;
+  }
+  .about-portrait {
+    width: 100%; border-radius: 16px; margin-bottom: 32px;
+    object-fit: cover; aspect-ratio: 4/3;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  }
+  .about-text p { font-size: 1.05rem; color: var(--mid); line-height: 1.8; margin-bottom: 20px; }
+  .about-text .big-quote {
+    font-size: 1.5rem; font-weight: 700; color: var(--ink);
+    line-height: 1.4; letter-spacing: -0.5px;
+    border-left: 3px solid var(--red); padding-left: 24px;
+    margin: 32px 0;
+  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-box { background: #f5f5f7; border-radius: 16px; padding: 28px; }
+  .stat-box .stat-num {
+    font-size: 2.4rem; font-weight: 900; letter-spacing: -2px; color: var(--ink);
+  }
+  .stat-box .stat-num em { color: var(--red); font-style: normal; }
+  .stat-box .stat-label { font-size: 0.82rem; color: var(--mid); margin-top: 6px; line-height: 1.4; }
+  .media-label {
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: var(--light); margin-bottom: 8px; margin-top: 28px;
+  }
+  .media-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    background: var(--ink); color: #fff;
+    font-size: 0.8rem; font-weight: 600; padding: 7px 16px; border-radius: 100px;
+  }
+  .chip.outlined {
+    background: transparent; color: var(--ink); border: 1.5px solid var(--border);
+  }
+
+  /* ─── SUB-BRANDS ─── */
+  .brands { background: var(--ink); }
+  .brands .section-label { color: rgba(200,16,46,0.9); }
+  .brands .section-title { color: #fff; }
+  .brands .section-intro { color: rgba(255,255,255,0.55); }
+  .brands-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px; margin-top: 56px;
+  }
+  .brand-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 36px 28px;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .brand-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .brand-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+  .brand-card:hover::before { opacity: 1; }
+
+  .brand-card[data-brand="consulting"]::before { background: var(--consulting); }
+  .brand-card[data-brand="learning"]::before { background: var(--learning); }
+  .brand-card[data-brand="ai"]::before       { background: var(--ai); }
+  .brand-card[data-brand="labs"]::before     { background: #d4a843; }
+
+  .brand-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 24px;
+  }
+  .brand-card[data-brand="consulting"] .brand-icon { background: rgba(29,53,87,0.5); }
+  .brand-card[data-brand="learning"] .brand-icon { background: rgba(42,125,79,0.5); }
+  .brand-card[data-brand="ai"]       .brand-icon { background: rgba(200,16,46,0.3); }
+  .brand-card[data-brand="labs"]     .brand-icon { background: rgba(212,168,67,0.4); }
+
+  .brand-name {
+    font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 10px;
+  }
+  .brand-card[data-brand="consulting"] .brand-name { color: #6b90b8; }
+  .brand-card[data-brand="learning"] .brand-name { color: #6bbf8a; }
+  .brand-card[data-brand="ai"]       .brand-name { color: var(--red2); }
+  .brand-card[data-brand="labs"]     .brand-name { color: #d4a843; }
+
+  .brand-title {
+    font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;
+    color: #fff; margin-bottom: 14px;
+  }
+  .brand-desc {
+    font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .brand-services { display: flex; flex-wrap: wrap; gap: 7px; }
+  .brand-tag {
+    font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 100px;
+    background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .brand-tag.product {
+    background: rgba(212,168,67,0.15); color: #d4a843;
+    border-color: rgba(212,168,67,0.25);
+  }
+
+  /* LABS product callout */
+  .labs-products {
+    margin-top: 20px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .labs-product-label {
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: rgba(255,255,255,0.25); margin-bottom: 12px;
+  }
+  .labs-product {
+    display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px;
+  }
+  .labs-product-name {
+    font-size: 0.95rem; font-weight: 800; color: #fff; letter-spacing: -0.3px;
+  }
+  .labs-product-desc {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.5;
+  }
+
+  /* ─── METHOD ─── */
+  .method { background: #f5f5f7; }
+  .method-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start; max-width: 1100px; margin: 0 auto;
+  }
+  .method-steps { display: flex; flex-direction: column; gap: 0; }
+  .method-step {
+    display: flex; gap: 24px; padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .method-step:last-child { border-bottom: none; }
+  .step-num {
+    font-size: 0.72rem; font-weight: 900; color: var(--red);
+    letter-spacing: 1px; min-width: 28px; padding-top: 2px;
+  }
+  .step-content h4 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .step-content p { font-size: 0.9rem; color: var(--mid); line-height: 1.65; }
+  .method-cta-box {
+    background: var(--ink); border-radius: 20px; padding: 48px;
+    position: sticky; top: 100px;
+  }
+  .method-cta-box h3 {
+    font-size: 1.8rem; font-weight: 900; letter-spacing: -1px;
+    color: #fff; margin-bottom: 16px; line-height: 1.2;
+  }
+  .method-cta-box p {
+    font-size: 0.95rem; color: rgba(255,255,255,0.55);
+    line-height: 1.7; margin-bottom: 32px;
+  }
+  .method-cta-box a {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 14px 28px; border-radius: 10px;
+    font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s;
+  }
+  .method-cta-box a:hover { opacity: 0.85; }
+
+  /* ─── WORK ─── */
+  .work { background: #fff; }
+  .work-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .work-card {
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px; transition: box-shadow 0.2s;
+  }
+  .work-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.07); }
+  .work-result {
+    font-size: 2.2rem; font-weight: 900; letter-spacing: -1.5px;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .work-result em { color: var(--red); font-style: normal; }
+  .work-client {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--light); margin-bottom: 14px;
+  }
+  .work-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.65; }
+
+  /* ─── SPEAKING ─── */
+  .speaking {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a14 50%, #0a0a1a 100%);
+    position: relative; overflow: hidden;
+  }
+  .speaking::before {
+    content: '';
+    position: absolute; top: -50%; left: -20%; width: 70%; height: 200%;
+    background: radial-gradient(ellipse, rgba(200,16,46,0.08) 0%, transparent 60%);
+  }
+  .speaking .section-label { color: rgba(200,16,46,0.9); position: relative; }
+  .speaking .section-title { color: #fff; position: relative; }
+  .speaking .section-intro { color: rgba(255,255,255,0.5); position: relative; }
+  .speaking-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto; position: relative;
+  }
+  .speaking-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 32px; transition: background 0.2s;
+  }
+  .speaking-card:hover { background: rgba(255,255,255,0.07); }
+  .speaking-tag {
+    display: inline-block; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red2); background: rgba(200,16,46,0.12);
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+  }
+  .speaking-card h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .speaking-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .speaking-card .speaking-venue {
+    font-size: 0.78rem; color: rgba(255,255,255,0.25); margin-top: 16px; font-weight: 500;
+  }
+
+  /* ─── SPEAKING PHOTOS ─── */
+  .speaking-photos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 16px; max-width: 1100px; margin: 0 auto 48px;
+    position: relative;
+  }
+  .speaking-photo {
+    border-radius: 12px; overflow: hidden;
+    aspect-ratio: 16/10; position: relative;
+  }
+  .speaking-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.85); transition: filter 0.3s;
+  }
+  .speaking-photo:hover img { filter: brightness(1); }
+  .speaking-photo .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 16px 12px 10px;
+    font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: #f5f5f7; }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .testi-card {
+    background: #fff; border-radius: 16px; padding: 36px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+  .testi-quote {
+    font-size: 1rem; color: var(--slate); line-height: 1.75;
+    font-style: italic; margin-bottom: 24px;
+  }
+  .testi-quote::before { content: '\201C'; color: var(--red); font-size: 1.4rem; font-style: normal; }
+  .testi-author { font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+  .testi-role { font-size: 0.78rem; color: var(--light); margin-top: 2px; }
+
+  /* ─── WRITING ─── */
+  .writing { background: #fff; }
+  .writing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .writing-card {
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px; transition: box-shadow 0.2s; cursor: pointer;
+  }
+  .writing-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.07); }
+  .writing-type {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--red); margin-bottom: 14px;
+  }
+  .writing-card h4 {
+    font-size: 1.05rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 12px; line-height: 1.4;
+  }
+  .writing-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.65; }
+  .writing-arrow { margin-top: 20px; font-size: 1.1rem; color: var(--red); font-weight: 700; text-decoration: none; display: inline-block; }
+  .writing-arrow:hover { color: var(--ink); }
+  .writing-meta { font-size: 0.72rem; color: var(--light); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 12px; }
+  .writing-card em { font-style: italic; color: var(--mid); }
+
+  /* ─── ROUND TABLE ─── */
+  .roundtable { background: #f3f2ef; }
+  .roundtable-intro { max-width: 660px; margin-bottom: 48px; }
+  .roundtable-feed { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; max-width: 1100px; margin: 0 auto; }
+  .rt-articles { display: flex; flex-direction: column; gap: 24px; }
+  .rt-signals { display: flex; flex-direction: column; gap: 16px; }
+  .rt-signals-header {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--light); margin-bottom: 8px;
+  }
+  .rt-article-card {
+    background: var(--white); border-radius: 16px; padding: 32px;
+    border: 1px solid var(--border); transition: box-shadow 0.2s;
+  }
+  .rt-article-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .rt-article-meta {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    font-size: 0.78rem; color: var(--light);
+  }
+  .rt-article-type {
+    background: var(--red); color: #fff; padding: 3px 10px; border-radius: 4px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .rt-article-type.signal { background: var(--consulting); }
+  .rt-article-type.framework { background: var(--learning); }
+  .rt-article-card h4 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.35; }
+  .rt-article-card p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+  .rt-article-link {
+    display: inline-block; margin-top: 12px; font-size: 0.82rem; font-weight: 600;
+    color: var(--red); text-decoration: none;
+  }
+  .rt-article-tags { display: flex; gap: 8px; margin-top: 12px; }
+  .rt-tag {
+    font-size: 0.7rem; padding: 3px 10px; border-radius: 20px;
+    background: rgba(0,0,0,0.04); color: var(--mid); font-weight: 500;
+  }
+  .rt-signal-card {
+    background: var(--white); border-radius: 12px; padding: 20px;
+    border: 1px solid var(--border); transition: box-shadow 0.2s;
+  }
+  .rt-signal-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .rt-signal-date { font-size: 0.72rem; color: var(--light); margin-bottom: 6px; }
+  .rt-signal-card h5 { font-size: 0.88rem; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
+  .rt-signal-card p { font-size: 0.82rem; color: var(--mid); line-height: 1.5; }
+  .rt-empty {
+    text-align: center; padding: 48px; color: var(--light); font-size: 0.9rem;
+    grid-column: 1 / -1;
+  }
+  .rt-powered {
+    text-align: center; margin-top: 32px; font-size: 0.72rem; color: var(--light);
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--ink); }
+  .contact-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .contact .section-label { color: rgba(200,16,46,0.9); }
+  .contact .section-title { color: #fff; margin-left: auto; margin-right: auto; }
+  .contact .section-intro { color: rgba(255,255,255,0.5); margin-left: auto; margin-right: auto; }
+  .contact-form {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px; padding: 48px; margin-top: 48px; text-align: left;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.5px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 14px 18px;
+    font-size: 0.92rem; color: #fff; font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: rgba(200,16,46,0.5);
+  }
+  .form-group select option { background: #1a1a1a; }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-full { grid-column: 1 / -1; }
+  .form-submit {
+    background: var(--red); color: #fff;
+    padding: 16px 40px; border-radius: 10px; border: none; cursor: pointer;
+    font-size: 0.95rem; font-weight: 700; font-family: 'Inter', sans-serif;
+    transition: opacity 0.2s; margin-top: 8px;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505; padding: 48px 64px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-logo {
+    font-size: 1.3rem; font-weight: 900; letter-spacing: -1px; color: #fff;
+  }
+  .footer-logo em { color: var(--red); font-style: normal; }
+  .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.25); margin-top: 4px; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+  .footer-copy {
+    font-size: 0.78rem; color: rgba(255,255,255,0.2);
+    max-width: 1200px; margin: 24px auto 0; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .brands-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid, .method-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { justify-content: center; }
+    .hero-image img { max-width: 360px; }
+    .method-cta-box { position: static; }
+    .work-grid, .speaking-grid, .testi-grid, .writing-grid { grid-template-columns: 1fr 1fr; }
+    .speaking-photos { grid-template-columns: 1fr 1fr; }
+    .roundtable-feed { grid-template-columns: 1fr; }
+    nav, section, .logos-bar, footer { padding-left: 32px; padding-right: 32px; }
+  }
+  @media (max-width: 640px) {
+    .brands-grid, .work-grid, .speaking-grid, .testi-grid, .writing-grid { grid-template-columns: 1fr; }
+    .speaking-photos { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero { padding: 100px 32px 64px; grid-template-columns: 1fr; }
+    .hero h1 { letter-spacing: -2px; }
+    .hero-image img { max-width: 280px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#" class="logo">
+    <!-- font-size 26, ls -1 | G at x=4, advance≈17.5 → ALAHAD x=21.5 | Shield centre=13 x0=0 x1=26 -->
+    <svg width="210" height="40" viewBox="0 0 210 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L26,0 L26,24 C26,33 13,39 13,39 C13,39 0,33 0,24 Z" fill="#c8102e"/>
+      <text x="4" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#ffffff" letter-spacing="-1">G</text>
+      <text x="21.5" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#0a0a0a" letter-spacing="-1">ALAHAD</text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#brands">Services</a>
+    <a href="#method">The Method</a>
+    <a href="#work">Work</a>
+    <a href="#speaking">Speaking</a>
+    <a href="#writing">Writing</a>
+    <a href="#roundtable">Round Table</a>
+    <a href="#contact" class="nav-cta">Work With Us →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span></span>AI Consulting · Marketing Strategy · Education · Products</div>
+    <h1>Serious AI<br>for <span class="highlight">serious decisions.</span></h1>
+    <p class="sub">
+      Galahad helps boards, CMOs, and transformation teams build, deploy, and govern
+      AI that earns its place — and doesn't embarrass you on the front page.
+    </p>
+    <div class="hero-actions">
+      <a href="#brands" class="btn-primary">Explore Services →</a>
+      <a href="#contact" class="btn-secondary">Start a Conversation</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="images/ross-headshot.jpg" alt="Ross Barnes — Founder, Galahad">
+  </div>
+  <div class="hero-bg-word">Galahad</div>
+</section>
+
+<!-- ─── LOGOS BAR ─── -->
+<div class="logos-bar">
+  <div class="logos-label">As seen in</div>
+  <div class="logos-list">
+    <span>BBC</span>
+    <span>Bloomberg</span>
+    <span>AdWeek</span>
+    <span>Campaign</span>
+    <span>Web Summit</span>
+    <span>Emeritus · MIT · Stanford</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">About Galahad</div>
+      <h2 class="section-title">One founder.<br>20 years.<br>No filler.</h2>
+      <div class="divider"></div>
+      <p>
+        Ross Barnes has been building digital things since before they were called digital.
+        Global CTO at The&Partnership (WPP) — scaled from 15 to 1,500 people and from £80m
+        to £1bn+ in billings. Chief Innovation Officer at Cedar (Omnicom). Interim CTO at
+        ZerotoOne.ai, where the first enterprise clients were McDonald's and Toyota.
+        He wrote a book on search in 2002. The current moment feels oddly familiar.
+      </p>
+      <div class="big-quote">
+        "AI without governance isn't innovation. It's liability wearing a press release."
+      </div>
+      <p>
+        Galahad exists because most AI consultancies optimise for demos. We optimise for
+        decisions. Everything we do — consulting, education, strategy, products — is built
+        on one principle: AI that earns its place in the room.
+      </p>
+    </div>
+    <div>
+      <img src="images/ross-studio-bw.jpg" alt="Ross Barnes" class="about-portrait">
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">20<em>+</em></div>
+          <div class="stat-label">Years in AI, data and digital leadership</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1<em>k+</em></div>
+          <div class="stat-label">Senior leaders trained on AI at Emeritus</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">£<em>1</em>bn</div>
+          <div class="stat-label">In billings scaled at The&Partnership</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">30<em>%</em></div>
+          <div class="stat-label">Client acquisition growth at Ascendancy</div>
+        </div>
+      </div>
+      <div class="media-label">Roles & Credentials</div>
+      <div class="media-chips">
+        <span class="chip">Emeritus Faculty</span>
+        <span class="chip">Ex-Global CTO, WPP</span>
+        <span class="chip outlined">BBC Commentator</span>
+        <span class="chip outlined">Web Summit ALPHA 2024</span>
+        <span class="chip outlined">CTO of the Year, Shortlisted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SUB-BRANDS ─── -->
+<section class="brands" id="brands">
+  <div class="section-label">The Galahad Family</div>
+  <h2 class="section-title">AI strategy.<br>Marketing intelligence.<br>One standard.</h2>
+  <p class="section-intro">
+    Four specialist arms. One operating standard. Whether it's a board diagnostic,
+    a team workshop, a marketing AI build, or an enterprise product — the method
+    doesn't change.
+  </p>
+
+  <div class="brands-grid">
+
+    <!-- CONSULTING -->
+    <div class="brand-card" data-brand="consulting">
+      <div class="brand-icon">🧭</div>
+      <div class="brand-name">Galahad Consulting</div>
+      <div class="brand-title">Strategic AI & Marketing Consulting</div>
+      <p class="brand-desc">
+        Senior-level AI strategy for boards, CMOs, and transformation programmes.
+        Where marketing meets AI — from brand positioning to GEO to full AI adoption strategy.
+      </p>
+      <div class="brand-services">
+        <span class="brand-tag">Board & C-Suite Consulting</span>
+        <span class="brand-tag">Marketing AI Strategy</span>
+        <span class="brand-tag">AI Diagnostics</span>
+        <span class="brand-tag">Brand & GEO Positioning</span>
+        <span class="brand-tag">Governance Frameworks</span>
+      </div>
+    </div>
+
+    <!-- LEARNING -->
+    <div class="brand-card" data-brand="learning">
+      <div class="brand-icon">🎓</div>
+      <div class="brand-name">Galahad Learning</div>
+      <div class="brand-title">AI Education & Training</div>
+      <p class="brand-desc">
+        Hands-on AI literacy for teams and leaders. From half-day workshops to
+        full certification programmes. Practical. Safe. No buzzwords.
+      </p>
+      <div class="brand-services">
+        <span class="brand-tag">Leadership Workshops</span>
+        <span class="brand-tag">Team Bootcamps</span>
+        <span class="brand-tag">AI Literacy Programmes</span>
+        <span class="brand-tag">The Galahad Method Cert.</span>
+        <span class="brand-tag">Custom Curricula</span>
+      </div>
+    </div>
+
+    <!-- AI STRATEGY -->
+    <div class="brand-card" data-brand="ai">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-name">Galahad AI</div>
+      <div class="brand-title">AI Build · Marketing & Operations</div>
+      <p class="brand-desc">
+        From strategy to working systems. Galahad AI delivers AI-powered marketing
+        infrastructure, campaign automation, and agent workflows that actually perform.
+      </p>
+      <div class="brand-services">
+        <span class="brand-tag">Marketing AI Build</span>
+        <span class="brand-tag">Campaign Automation</span>
+        <span class="brand-tag">Agent Design & Deployment</span>
+        <span class="brand-tag">Content & SEO Automation</span>
+        <span class="brand-tag">Responsible AI Audits</span>
+      </div>
+    </div>
+
+    <!-- LABS -->
+    <div class="brand-card" data-brand="labs">
+      <div class="brand-icon">🔬</div>
+      <div class="brand-name">Galahad Labs</div>
+      <div class="brand-title">AI Products & Platforms</div>
+      <p class="brand-desc">
+        Where Galahad builds. Current product: Grail — the generative engine optimisation
+        platform for brands who need to become the answer AI surfaces.
+      </p>
+      <div class="brand-services">
+        <span class="brand-tag">Platform Architecture</span>
+        <span class="brand-tag">Cognitive Infrastructure</span>
+        <span class="brand-tag">Open R&D</span>
+      </div>
+      <div class="labs-products">
+        <div class="labs-product-label">Current Product</div>
+        <div class="labs-product">
+          <div class="labs-product-name">Grail</div>
+        </div>
+        <p class="labs-product-desc">The GEO platform by Galahad Labs. Build the semantic infrastructure that makes your brand the answer AI surfaces.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── THE GALAHAD METHOD ─── -->
+<section class="method" id="method">
+  <div class="method-grid">
+    <div>
+      <div class="section-label">The Galahad Method</div>
+      <h2 class="section-title">A system, not just an opinion.</h2>
+      <div class="divider"></div>
+      <p class="section-intro" style="margin-bottom:0;">
+        Every Galahad engagement — consulting, workshop, or build — runs on the same
+        repeatable framework. Not ad hoc. Not vibes. A method.
+      </p>
+
+      <div class="method-steps" style="margin-top:40px;">
+        <div class="method-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Define the decision, not the demo</h4>
+            <p>What does the organisation actually need to decide or do differently? We start with business outcome, not technology.</p>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Map the risk surface</h4>
+            <p>Governance, data, compliance, and human factors. We make the risk landscape visible before any build begins.</p>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Design with guardrails built in</h4>
+            <p>Decision boundaries, escalation paths, human gates. AI that knows its limits is AI you can trust.</p>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Build for iteration, not for demos</h4>
+            <p>Small, safe, measurable. We ship working systems with feedback loops, not prototypes that die in a boardroom.</p>
+          </div>
+        </div>
+        <div class="method-step">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h4>Compound the knowledge</h4>
+            <p>Every engagement leaves the client team more capable than when we arrived. That's the long-term ROI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="method-cta-box">
+        <h3>Start with a Galahad Diagnostic</h3>
+        <p>
+          A focused 2-hour session to map your AI maturity, surface the highest-value
+          opportunities, and identify the governance gaps that could trip you up.
+          No slides. No sales deck. Just clarity.
+        </p>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.4); margin-bottom:32px;">
+          £2,500 · Remote or London · Results within 5 working days
+        </p>
+        <a href="#contact">Book a Diagnostic →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WORK ─── -->
+<section class="work" id="work">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Results, not case studies.</h2>
+    <p class="section-intro">Real outcomes at real scale. The numbers are the story.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-result">£350<em>m</em></div>
+        <div class="work-client">Toyota / Lexus · The&Partnership</div>
+        <p class="work-desc">Designed and delivered a bespoke Data Management Platform that secured the £350m Toyota/Lexus win across Europe. Built the architecture, led the pitch, delivered the platform.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">1,500<em>→</em></div>
+        <div class="work-client">The&Partnership · WPP</div>
+        <p class="work-desc">Scaled the agency from 15 to 1,500 employees and £80m to £1bn+ in billings as Global CTO. Sat on the Global Board. Drove Agile transformation across every function.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">£200<em>m</em></div>
+        <div class="work-client">GroupM · Digital Hub</div>
+        <p class="work-desc">Established a £200m Global Digital Hub consolidating media delivery and analytics for GroupM clients — pioneering real-time bidding methodology for Digital OOH in the UK.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">1<em>k+</em></div>
+        <div class="work-client">Emeritus · AI Literacy</div>
+        <p class="work-desc">Delivered AI literacy programmes to 1,000+ senior leaders alongside faculty from MIT and Stanford. Practical decision frameworks. 30-day action plans. Real guardrails.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">BA<em>+</em>WH</div>
+        <div class="work-client">Cedar · Omnicom</div>
+        <p class="work-desc">Led and won major client pitches for British Airways and WHSmith as Chief Innovation & Technology Officer — Cedar's largest-ever business wins.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">MCD<em>+</em></div>
+        <div class="work-client">ZerotoOne.ai · McDonald's & Toyota</div>
+        <p class="work-desc">As Interim CTO at a Carnegie Mellon AI spinout, defined GTM strategy and secured the first enterprise contracts — McDonald's and Toyota — within the first operating year.</p>
+      </div>
+      <div class="work-card">
+        <div class="work-result">CMO<em>s</em></div>
+        <div class="work-client">Galahad Consulting · Marketing AI</div>
+        <p class="work-desc">Advising senior marketing leaders on AI adoption strategy: from audit to roadmap to implementation. GEO, campaign automation, content intelligence, and where AI earns its place in the marketing stack.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPEAKING ─── -->
+<section class="speaking" id="speaking">
+  <div class="section-label">Speaking & Keynotes</div>
+  <h2 class="section-title">Built to challenge<br>comfortable assumptions.</h2>
+  <p class="section-intro">
+    From boardrooms to global stages. Ross speaks on AI strategy, governance,
+    responsible automation, and the human side of digital transformation.
+  </p>
+  <div class="speaking-photos">
+    <div class="speaking-photo">
+      <img src="images/ross-bbc-world-news.jpg" alt="Ross Barnes on BBC Business Live">
+      <div class="photo-caption">BBC Business Live</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-bbc-fake-advertising.jpg" alt="Ross Barnes on BBC World News — Fake Advertising">
+      <div class="photo-caption">BBC World News</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-adweek-europe.jpg" alt="Ross Barnes at Advertising Week Europe">
+      <div class="photo-caption">Advertising Week Europe</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-panel-discussion.jpg" alt="Ross Barnes panel discussion">
+      <div class="photo-caption">Industry Panel</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-m6-cannes.jpg" alt="Ross Barnes at M6 Cannes">
+      <div class="photo-caption">Cannes Lions / M6</div>
+    </div>
+  </div>
+
+  <div class="speaking-grid">
+    <div class="speaking-card">
+      <div class="speaking-tag">Keynote</div>
+      <h4>AI You Can Actually Trust</h4>
+      <p>The business case for responsible AI — why governance is a growth lever, not a brake. Built for leadership teams who need to move fast without breaking things.</p>
+      <div class="speaking-venue">Corporate · 45–60 min · Interactive Q&A available</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Workshop</div>
+      <h4>From Pilots to Production</h4>
+      <p>A hands-on session for product, data and technology teams. How to decompose AI tasks, add guardrails, handle data safely, and avoid the failure modes nobody talks about.</p>
+      <div class="speaking-venue">Teams up to 80 · Half or full day · Emeritus-certified</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Panel / Fireside</div>
+      <h4>The Next 18 Months in AI</h4>
+      <p>Unscripted, no-hype commentary on where agentic AI is actually going and what it means for CMOs, CTOs, and the organisations between them.</p>
+      <div class="speaking-venue">Conferences · Industry events · BBC / Bloomberg format</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Boardroom</div>
+      <h4>AI Governance for Executives</h4>
+      <p>A confidential, facilitated session for boards and C-Suite teams. Risk frameworks, liability landscape, competitive positioning. Galahad Method applied to your context.</p>
+      <div class="speaking-venue">Private · 8–25 people · Under NDA · London or remote</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Masterclass</div>
+      <h4>Agentic AI: What It Is, What It Isn't</h4>
+      <p>Separating signal from noise on autonomous AI systems. What agents can do today, where they break, how to scope safely, and when NOT to build one.</p>
+      <div class="speaking-venue">Executive education · 90 min · Pre-reading included</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Marketing Audience</div>
+      <h4>AI for CMOs: The Marketing Stack Is Changing</h4>
+      <p>From GEO and content intelligence to campaign automation and first-party data strategy — a frank, un-hyped keynote for marketing leaders navigating a landscape where AI is reshaping the entire function.</p>
+      <div class="speaking-venue">Marketing conferences · CMO forums · 40–60 min</div>
+    </div>
+    <div class="speaking-card">
+      <div class="speaking-tag">Past Stages</div>
+      <h4>Web Summit ALPHA 2024 · Emeritus · BBC · Bloomberg · AdWeek</h4>
+      <p>Selected for the ALPHA programme at Web Summit Lisbon 2024. Regular contributor and commentator on AI, MarTech, and digital transformation.</p>
+      <div class="speaking-venue">Available for booking · Global travel considered</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Trusted by people<br>who move things.</h2>
+    <div class="divider"></div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">Ross advised our largest clients on their data and technology needs, ensuring their ecosystems stayed ahead of their competitors and future-proofing them to successfully navigate the fast-changing digital and data landscape. The more technical the question, the happier he is.</p>
+        <div class="testi-author">Jess Burley</div>
+        <div class="testi-role">Chair, NED &amp; Trustee</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">Only occasionally are you given the opportunity to work with someone who is thoroughly professional, absolutely expert in what they do, totally dedicated and who constantly strives to break the barriers re service levels. Ross is one of that rare breed.</p>
+        <div class="testi-author">Gus Ferguson</div>
+        <div class="testi-role">Founder, Ascendant</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">His real value to any business must be the ability to strategically link specialist knowledge together with the wider communications picture.</p>
+        <div class="testi-author">Richard Hollidge</div>
+        <div class="testi-role">Apple Retail, EMEIA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WRITING ─── -->
+<section class="writing" id="writing">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">Writing & Thinking</div>
+    <h2 class="section-title">Ideas, not impressions.</h2>
+    <p class="section-intro">Real thinking on AI strategy, adoption, and what the next wave actually requires of organisations.</p>
+    <div class="writing-grid">
+      <div class="writing-card">
+        <div class="writing-type">Deep Dive</div>
+        <div class="writing-meta">From LinkedIn · 1 week ago</div>
+        <h4>We've been here before. We just didn't see it coming the second time.</h4>
+        <p>In 2002 I wrote a book called <em>Search Engineering Your Website</em>. At that time, search was not a marketing problem — it was an engineering one. We are at a similar moment again. Only this time the machine isn't just Google. It's agents.</p>
+        <a href="https://www.linkedin.com/in/rossbarnes/recent-activity/all/" target="_blank" class="writing-arrow">Read on LinkedIn →</a>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Opinion</div>
+        <div class="writing-meta">From LinkedIn · 3 weeks ago</div>
+        <h4>"Could it also do this?" — the question that kills most AI projects.</h4>
+        <p>Every AI engagement reaches the same moment: someone asks if the tool can do something else too. The honest answer is usually yes. But that instinct — to keep expanding — is almost always where things start to go wrong. Start narrow. Start useful. Earn trust.</p>
+        <a href="https://www.linkedin.com/in/rossbarnes/recent-activity/all/" target="_blank" class="writing-arrow">Read on LinkedIn →</a>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Field Notes</div>
+        <div class="writing-meta">From LinkedIn · 3 weeks ago</div>
+        <h4>Over 1,000 senior leaders trained. Here's the thing they all struggled with.</h4>
+        <p>Running product-neutral AI enablement training across more than 1,000 senior product, data, and commercial leaders clarifies something fast: the hard part isn't capability. It's deciding where to draw the line — where AI stops and human judgement begins.</p>
+        <a href="https://www.linkedin.com/in/rossbarnes/recent-activity/all/" target="_blank" class="writing-arrow">Read on LinkedIn →</a>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Opinion</div>
+        <div class="writing-meta">Galahad · Featured</div>
+        <h4>GEO isn't SEO — and treating it that way will cost you.</h4>
+        <p>Why generative engine optimisation requires a fundamentally different architecture. Ranking on AI surfaces isn't about keywords. It's about becoming the most credible source in your category — structurally and semantically.</p>
+        <a href="#contact" class="writing-arrow">Discuss this →</a>
+      </div>
+      <div class="writing-card">
+        <div class="writing-type">Framework</div>
+        <div class="writing-meta">Galahad · Featured</div>
+        <h4>The board AI briefing: what to say, what to leave out.</h4>
+        <p>A concise guide for executives presenting AI strategy upwards. The framing, the risk language, and the governance questions you will be asked before the slide deck ends.</p>
+        <a href="#contact" class="writing-arrow">Discuss this →</a>
+      </div>
+      <div class="writing-card" style="background:var(--ink); color:#fff;">
+        <div class="writing-type" style="background:rgba(255,255,255,0.12); color:#fff;">Newsletter</div>
+        <div class="writing-meta" style="color:rgba(255,255,255,0.5);">Fortnightly · Free</div>
+        <h4 style="color:#fff;">The Herald</h4>
+        <p style="color:rgba(255,255,255,0.7);">AI intelligence delivered to the court. No product announcements, no fundraising hype — just what matters to decision-makers and why.</p>
+        <a href="#contact" class="writing-arrow" style="color:var(--red2);">Subscribe →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ROUND TABLE ─── -->
+<section class="roundtable" id="roundtable">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">The Round Table</div>
+    <h2 class="section-title">Intelligence, not content.</h2>
+    <p class="section-intro roundtable-intro">Long-form thinking and quick-fire signals on AI strategy, governance, and what's actually changing — published direct from the Galahad operating system.</p>
+    <div class="roundtable-feed" id="rt-feed">
+      <!-- JS populates this from roundtable.json -->
+      <!-- Fallback / sample content shown when no JSON available -->
+      <div class="rt-articles" id="rt-articles">
+        <div class="rt-article-card">
+          <div class="rt-article-meta">
+            <span class="rt-article-type">Deep Dive</span>
+            <span>5 Mar 2026</span>
+          </div>
+          <h4>Why your AI governance framework is already outdated</h4>
+          <p>Most governance frameworks were written for a world of single-model deployments and human-in-the-loop workflows. Agentic AI breaks every assumption they're built on. Here's what needs to change.</p>
+          <div class="rt-article-tags"><span class="rt-tag">governance</span><span class="rt-tag">strategy</span></div>
+          <a href="#" class="rt-article-link">Read more →</a>
+        </div>
+        <div class="rt-article-card">
+          <div class="rt-article-meta">
+            <span class="rt-article-type framework">Framework</span>
+            <span>28 Feb 2026</span>
+          </div>
+          <h4>The 90-day AI audit: what to measure, what to ignore</h4>
+          <p>After 90 days, most AI projects have either proven their value or revealed their flaws. Here's the framework Galahad uses to separate signal from sunk cost.</p>
+          <div class="rt-article-tags"><span class="rt-tag">frameworks</span><span class="rt-tag">measurement</span></div>
+          <a href="#" class="rt-article-link">Read more →</a>
+        </div>
+      </div>
+      <div class="rt-signals" id="rt-signals">
+        <div class="rt-signals-header">Signals</div>
+        <div class="rt-signal-card">
+          <div class="rt-signal-date">6 Mar 2026</div>
+          <h5>EU AI Act enforcement begins in earnest</h5>
+          <p>First fines expected by Q3. If your compliance framework is still "in progress," the clock is now audible.</p>
+        </div>
+        <div class="rt-signal-card">
+          <div class="rt-signal-date">4 Mar 2026</div>
+          <h5>Anthropic ships tool-use for Claude — what it means for agents</h5>
+          <p>The agentic stack just got another layer. Implications for enterprise tool chains and the "build vs. buy" debate.</p>
+        </div>
+        <div class="rt-signal-card">
+          <div class="rt-signal-date">1 Mar 2026</div>
+          <h5>CMO tenure hits 3.3 years — AI literacy now a survival skill</h5>
+          <p>The shortest average tenure in the C-suite just got shorter. AI-literate CMOs are outlasting their peers by 18 months.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rt-powered">Powered by Workforce OS</div>
+  </div>
+</section>
+
+<script>
+// Round Table: fetch content from Workforce OS JSON feed
+(function() {
+  const FEED_URL = 'content/roundtable.json';
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function typeClass(type) {
+    const map = { 'deep-dive': '', 'opinion': '', 'framework': 'framework', 'field-notes': '' };
+    return map[type] || '';
+  }
+
+  function renderArticle(post) {
+    return `<div class="rt-article-card">
+      <div class="rt-article-meta">
+        <span class="rt-article-type ${typeClass(post.type)}">${post.type_label || post.type}</span>
+        <span>${formatDate(post.date)}</span>
+      </div>
+      <h4>${post.title}</h4>
+      <p>${post.excerpt || post.body}</p>
+      ${post.tags ? `<div class="rt-article-tags">${post.tags.map(t => `<span class="rt-tag">${t}</span>`).join('')}</div>` : ''}
+      ${post.url ? `<a href="${post.url}" class="rt-article-link">Read more →</a>` : ''}
+    </div>`;
+  }
+
+  function renderSignal(post) {
+    return `<div class="rt-signal-card">
+      <div class="rt-signal-date">${formatDate(post.date)}</div>
+      <h5>${post.title}</h5>
+      <p>${post.body || post.excerpt}</p>
+    </div>`;
+  }
+
+  fetch(FEED_URL)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      const articles = data.posts.filter(p => p.type !== 'signal');
+      const signals = data.posts.filter(p => p.type === 'signal');
+
+      if (articles.length) {
+        document.getElementById('rt-articles').innerHTML = articles.map(renderArticle).join('');
+      }
+      if (signals.length) {
+        document.getElementById('rt-signals').innerHTML =
+          '<div class="rt-signals-header">Signals</div>' + signals.map(renderSignal).join('');
+      }
+    })
+    .catch(() => {
+      // JSON not available yet — keep the fallback/sample content
+    });
+})();
+</script>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Work With Galahad</div>
+    <h2 class="section-title">Let's start<br>with a conversation.</h2>
+    <p class="section-intro">
+      Tell us what you're trying to solve. We'll tell you whether we're the right people
+      to help — and if we're not, we'll say so.
+    </p>
+  </div>
+  <div class="contact-form" style="max-width:800px; margin:48px auto 0;">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@company.com">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Organisation</label>
+        <input type="text" placeholder="Company name">
+      </div>
+      <div class="form-group">
+        <label>What are you looking for?</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Galahad Consulting — AI Strategy or Diagnostic</option>
+          <option>Galahad Consulting — Marketing AI Strategy</option>
+          <option>Galahad Learning — Workshop or Training</option>
+          <option>Galahad AI — Build Project or Automation</option>
+          <option>Galahad Labs — Grail (GEO / AI Authority)</option>
+          <option>Speaking or Keynote Enquiry</option>
+          <option>Something else</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group form-full">
+        <label>Tell us more</label>
+        <textarea placeholder="What's the challenge? What have you already tried? What does good look like?"></textarea>
+      </div>
+    </div>
+    <button class="form-submit">Send Message →</button>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">G<em>alahad</em></div>
+      <div class="footer-tagline">Serious AI for serious decisions. · Founded by Ross Barnes</div>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#brands">Services</a>
+      <a href="#method">The Method</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#writing">Writing</a>
+      <a href="#roundtable">Round Table</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Galahad. All rights reserved.</span>
+    <span>London · Global</span>
+  </div>
+</footer>
+
+</body>
+</html>

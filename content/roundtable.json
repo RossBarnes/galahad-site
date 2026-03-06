@@ -1,0 +1,52 @@
+{
+  "generated_by": "workforce-os",
+  "generated_at": "2026-03-06T12:00:00Z",
+  "posts": [
+    {
+      "id": "rt-001",
+      "type": "deep-dive",
+      "type_label": "Deep Dive",
+      "title": "Why your AI governance framework is already outdated",
+      "excerpt": "Most governance frameworks were written for a world of single-model deployments and human-in-the-loop workflows. Agentic AI breaks every assumption they're built on. Here's what needs to change.",
+      "date": "2026-03-05",
+      "url": "roundtable/governance-framework-outdated.html",
+      "tags": ["governance", "strategy"],
+      "author": "Ross Barnes"
+    },
+    {
+      "id": "rt-002",
+      "type": "framework",
+      "type_label": "Framework",
+      "title": "The 90-day AI audit: what to measure, what to ignore",
+      "excerpt": "After 90 days, most AI projects have either proven their value or revealed their flaws. Here's the framework Galahad uses to separate signal from sunk cost.",
+      "date": "2026-02-28",
+      "url": "roundtable/90-day-ai-audit.html",
+      "tags": ["frameworks", "measurement"],
+      "author": "Ross Barnes"
+    },
+    {
+      "id": "rt-003",
+      "type": "signal",
+      "title": "EU AI Act enforcement begins in earnest",
+      "body": "First fines expected by Q3. If your compliance framework is still \"in progress,\" the clock is now audible.",
+      "date": "2026-03-06",
+      "tags": ["regulation"]
+    },
+    {
+      "id": "rt-004",
+      "type": "signal",
+      "title": "Anthropic ships tool-use for Claude — what it means for agents",
+      "body": "The agentic stack just got another layer. Implications for enterprise tool chains and the \"build vs. buy\" debate.",
+      "date": "2026-03-04",
+      "tags": ["tools", "agents"]
+    },
+    {
+      "id": "rt-005",
+      "type": "signal",
+      "title": "CMO tenure hits 3.3 years — AI literacy now a survival skill",
+      "body": "The shortest average tenure in the C-suite just got shorter. AI-literate CMOs are outlasting their peers by 18 months.",
+      "date": "2026-03-01",
+      "tags": ["marketing", "leadership"]
+    }
+  ]
+}
