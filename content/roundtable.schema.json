@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://galahad.local/roundtable.schema.json",
+  "title": "WFOS Roundtable Feed",
+  "type": "object",
+  "required": ["generated_by", "generated_at", "posts"],
+  "properties": {
+    "generated_by": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "posts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/post" }
+    }
+  },
+  "$defs": {
+    "post": {
+      "type": "object",
+      "required": ["id", "type", "title", "date"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": ["deep-dive", "opinion", "framework", "field-notes", "signal"]
+        },
+        "type_label": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 },
+        "excerpt": { "type": "string" },
+        "body": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "url": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "author": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "signal" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["body"]
+          },
+          "else": {
+            "required": ["excerpt"]
+          }
+        }
+      ]
+    }
+  }
+}
