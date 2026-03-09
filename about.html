@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team — Galahad</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:      #0a0a0a;
+    --slate:    #1a1a2e;
+    --mid:      #555568;
+    --light:    #8888a0;
+    --bg:       #fafafa;
+    --white:    #ffffff;
+    --red:      #c8102e;
+    --red2:     #e63946;
+    --border:   #e5e5ea;
+    --card:     #ffffff;
+    --consulting: #1d3557;
+    --learning: #2a7d4f;
+    --ai:       #c8102e;
+    --labs:     #d4a843;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: var(--ink); line-height: 1.6; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 72px;
+  }
+  .logo { text-decoration: none; display: flex; align-items: center; }
+  .logo em { color: var(--red); font-style: normal; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid); font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: #fff;
+    padding: 10px 22px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red); }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header {
+    padding: 140px 64px 64px;
+    background: #fff;
+  }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; color: var(--red); margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    letter-spacing: -1.5px; line-height: 1.1; color: var(--ink);
+    max-width: 700px; margin-bottom: 20px;
+  }
+  .section-intro {
+    font-size: 1.05rem; color: var(--mid); max-width: 600px;
+    line-height: 1.75; margin-bottom: 56px;
+  }
+  .divider { width: 48px; height: 3px; background: var(--red); margin: 20px 0 48px; }
+
+  /* ─── FOUNDER SECTION ─── */
+  .founder {
+    padding: 0 64px 96px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .founder-grid {
+    display: grid; grid-template-columns: 380px 1fr;
+    gap: 64px; align-items: start;
+  }
+  .founder-image-col { position: sticky; top: 100px; }
+  .founder-portrait {
+    width: 100%; border-radius: 16px;
+    object-fit: cover; aspect-ratio: 3/4;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  }
+  .founder-social {
+    display: flex; gap: 12px; margin-top: 20px;
+  }
+  .founder-social a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; font-weight: 600; color: var(--mid);
+    text-decoration: none; padding: 8px 16px;
+    border: 1.5px solid var(--border); border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .founder-social a:hover { color: var(--ink); border-color: var(--ink); }
+
+  .founder-name {
+    font-size: 1.8rem; font-weight: 900; letter-spacing: -1px;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .founder-role {
+    font-size: 0.88rem; font-weight: 600; color: var(--red);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 32px;
+  }
+  .founder-bio p {
+    font-size: 1.05rem; color: var(--mid); line-height: 1.8; margin-bottom: 20px;
+  }
+  .founder-bio .big-quote {
+    font-size: 1.4rem; font-weight: 700; color: var(--ink);
+    line-height: 1.4; letter-spacing: -0.5px;
+    border-left: 3px solid var(--red); padding-left: 24px;
+    margin: 36px 0;
+  }
+
+  /* ─── CAREER TIMELINE ─── */
+  .career {
+    padding: 96px 64px;
+    background: #f5f5f7;
+  }
+  .career-inner { max-width: 1100px; margin: 0 auto; }
+  .timeline {
+    display: grid; gap: 0;
+    margin-top: 48px;
+  }
+  .timeline-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 32px; padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:first-child { padding-top: 0; }
+  .timeline-period {
+    font-size: 0.82rem; font-weight: 700; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    padding-top: 4px;
+  }
+  .timeline-role {
+    font-size: 1.1rem; font-weight: 800; color: var(--ink);
+    letter-spacing: -0.5px; margin-bottom: 2px;
+  }
+  .timeline-org {
+    font-size: 0.88rem; font-weight: 600; color: var(--mid);
+    margin-bottom: 8px;
+  }
+  .timeline-desc {
+    font-size: 0.95rem; color: var(--mid); line-height: 1.7;
+  }
+
+  /* ─── CREDENTIALS ─── */
+  .credentials {
+    padding: 96px 64px;
+    background: #fff;
+  }
+  .credentials-inner { max-width: 1100px; margin: 0 auto; }
+  .cred-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px; margin-top: 48px;
+  }
+  .cred-card {
+    background: #f5f5f7; border-radius: 16px; padding: 32px;
+  }
+  .cred-card h4 {
+    font-size: 1rem; font-weight: 800; color: var(--ink);
+    margin-bottom: 12px; letter-spacing: -0.3px;
+  }
+  .cred-card p {
+    font-size: 0.92rem; color: var(--mid); line-height: 1.6;
+  }
+  .cred-card .cred-icon {
+    font-size: 1.6rem; margin-bottom: 16px;
+  }
+
+  /* ─── SPEAKING PHOTOS ─── */
+  .about-speaking {
+    padding: 96px 64px;
+    background: var(--ink);
+  }
+  .about-speaking .section-label { color: rgba(200,16,46,0.9); }
+  .about-speaking .section-title { color: #fff; }
+  .about-speaking .section-intro { color: rgba(255,255,255,0.45); }
+  .speaking-photos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px; margin-top: 48px;
+  }
+  .speaking-photo img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    border-radius: 12px;
+  }
+  .speaking-photo .photo-caption {
+    font-size: 0.75rem; font-weight: 600;
+    color: rgba(255,255,255,0.4); margin-top: 8px;
+    text-align: center;
+  }
+
+  /* ─── CTA ─── */
+  .about-cta {
+    padding: 96px 64px;
+    text-align: center; background: #fff;
+  }
+  .about-cta .btn-primary {
+    display: inline-block;
+    background: var(--ink); color: #fff;
+    padding: 16px 32px; border-radius: 10px;
+    font-size: 0.95rem; font-weight: 700; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .about-cta .btn-primary:hover { background: var(--red); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); padding: 48px 64px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px;
+  }
+  .footer-logo {
+    font-size: 1.2rem; font-weight: 900; color: #fff;
+  }
+  .footer-logo em { color: var(--red); font-style: normal; }
+  .footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.25); margin-top: 4px; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.35); text-decoration: none;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+  .footer-copy {
+    font-size: 0.75rem; color: rgba(255,255,255,0.15);
+    display: flex; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav, .page-header, .founder, .career, .credentials, .about-speaking, .about-cta, footer {
+      padding-left: 32px; padding-right: 32px;
+    }
+    .nav-links { display: none; }
+    .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+    .founder-image-col { position: static; max-width: 320px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    .cred-grid { grid-template-columns: 1fr; }
+    .speaking-photos { grid-template-columns: repeat(3, 1fr); }
+    .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .footer-copy { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="logo">
+    <svg width="120" height="36" viewBox="0 0 120 36">
+      <rect width="32" height="36" rx="6" fill="#c8102e"/>
+      <text x="4" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#ffffff" letter-spacing="-1">G</text>
+      <text x="21.5" y="28" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="#0a0a0a" letter-spacing="-1">ALAHAD</text>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="about.html" style="color:var(--ink);">Our Team</a>
+    <a href="index.html#brands">Services</a>
+    <a href="index.html#method">The Method</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#speaking">Speaking</a>
+    <a href="index.html#writing">Writing</a>
+    <a href="index.html#contact" class="nav-cta">Work With Us →</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE HEADER ─── -->
+<div class="page-header">
+  <div class="section-label">Our Team</div>
+  <h2 class="section-title">The people behind<br>the method.</h2>
+  <p class="section-intro" style="margin-bottom:0;">
+    Galahad was founded on a simple conviction: AI consulting should be led by people
+    who've built, shipped, and been accountable for technology at enterprise scale — not
+    just advised on it from the sidelines.
+  </p>
+</div>
+
+<!-- ─── FOUNDER ─── -->
+<section class="founder">
+  <div class="founder-grid">
+    <div class="founder-image-col">
+      <img src="images/ross-headshot.jpg" alt="Ross Barnes — Founder & CEO, Galahad" class="founder-portrait">
+      <div class="founder-social">
+        <a href="https://www.linkedin.com/in/rossbarnes1/" target="_blank">LinkedIn →</a>
+      </div>
+    </div>
+    <div>
+      <div class="founder-name">Ross Barnes</div>
+      <div class="founder-role">Founder & CEO</div>
+      <div class="founder-bio">
+        <p>
+          Ross founded Galahad after two decades at the intersection of AI, data, and marketing
+          technology — leading teams, building platforms, and advising boards across some of the
+          world's largest media and technology organisations.
+        </p>
+        <p>
+          As Global CTO at The&Partnership (WPP), he scaled the agency from 15 to 1,500 people
+          and from £80m to £1bn+ in billings, sitting on the Global Board and driving Agile
+          transformation across every function. As Chief Innovation & Technology Officer at
+          Cedar (Omnicom), he led the largest client wins in the agency's history — British Airways
+          and WHSmith.
+        </p>
+
+        <div class="big-quote">
+          "AI without governance isn't innovation. It's liability wearing a press release."
+        </div>
+
+        <p>
+          At GroupM, he established a £200m Global Digital Hub for media delivery and analytics,
+          pioneering real-time bidding methodology for Digital OOH in the UK. As Interim CTO at
+          ZerotoOne.ai — a Carnegie Mellon AI spinout — he defined the go-to-market strategy and
+          secured McDonald's and Toyota as the first enterprise clients within the first year.
+        </p>
+        <p>
+          Ross teaches AI strategy to senior executives through Emeritus, alongside faculty from
+          MIT and Stanford, having delivered programmes to 1,000+ leaders. He's a regular
+          commentator on BBC and Bloomberg, was selected for Web Summit's ALPHA programme in 2024,
+          and wrote a book on search marketing in 2002 — a moment that, he says, feels oddly
+          familiar.
+        </p>
+        <p>
+          He brings all of that to Galahad: the operating experience, the governance instinct,
+          and a deep scepticism of AI that sounds impressive but doesn't survive contact with
+          reality.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CAREER TIMELINE ─── -->
+<section class="career">
+  <div class="career-inner">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Where the experience<br>was earned.</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-period">2024 – Present</div>
+        <div>
+          <div class="timeline-role">Founder & CEO</div>
+          <div class="timeline-org">Galahad</div>
+          <div class="timeline-desc">AI strategy, marketing intelligence, executive education, and product development. Building the consultancy from the ground up.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">2023 – 2024</div>
+        <div>
+          <div class="timeline-role">Interim CTO</div>
+          <div class="timeline-org">ZerotoOne.ai (Carnegie Mellon spinout)</div>
+          <div class="timeline-desc">GTM strategy and first enterprise contracts — McDonald's and Toyota — within the first operating year.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">2022 – 2023</div>
+        <div>
+          <div class="timeline-role">Faculty — AI Strategy</div>
+          <div class="timeline-org">Emeritus (MIT / Stanford)</div>
+          <div class="timeline-desc">AI literacy and strategy programmes for 1,000+ senior leaders. Decision frameworks, guardrails, and 30-day action plans.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">2018 – 2022</div>
+        <div>
+          <div class="timeline-role">Chief Innovation & Technology Officer</div>
+          <div class="timeline-org">Cedar Communications (Omnicom)</div>
+          <div class="timeline-desc">Led and won the agency's largest-ever client pitches — British Airways and WHSmith. Technology and innovation leadership across the business.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">2013 – 2018</div>
+        <div>
+          <div class="timeline-role">Global CTO & Board Member</div>
+          <div class="timeline-org">The&Partnership (WPP)</div>
+          <div class="timeline-desc">Scaled from 15 to 1,500 employees, £80m to £1bn+ in billings. Global Board. Agile transformation. Built the DMP that secured the £350m Toyota/Lexus win.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">2008 – 2013</div>
+        <div>
+          <div class="timeline-role">Global Digital Hub Lead</div>
+          <div class="timeline-org">GroupM</div>
+          <div class="timeline-desc">Established a £200m hub consolidating media delivery and analytics. Pioneered real-time bidding for Digital OOH in the UK.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CREDENTIALS ─── -->
+<section class="credentials">
+  <div class="credentials-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Recognition & affiliations.</h2>
+    <div class="divider"></div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">🎓</div>
+        <h4>Emeritus Faculty</h4>
+        <p>Teaching AI strategy to senior executives alongside faculty from MIT and Stanford. 1,000+ leaders trained.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">📺</div>
+        <h4>BBC & Bloomberg</h4>
+        <p>Regular commentator on AI, marketing technology, digital transformation, and responsible automation.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🏆</div>
+        <h4>Web Summit ALPHA 2024</h4>
+        <p>Selected for the ALPHA startup programme at Web Summit Lisbon — showcasing Galahad's AI products.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">📖</div>
+        <h4>Published Author</h4>
+        <p>Wrote one of the earliest books on search marketing in 2002. Two decades later, the questions feel oddly familiar.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🏅</div>
+        <h4>CTO of the Year</h4>
+        <p>Shortlisted for CTO of the Year during tenure at The&Partnership / WPP.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🎤</div>
+        <h4>Global Speaker</h4>
+        <p>Keynotes and panels at Advertising Week, Cannes Lions, Web Summit, and corporate stages worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPEAKING PHOTOS ─── -->
+<section class="about-speaking">
+  <div class="section-label">On Stage</div>
+  <h2 class="section-title">In the room where<br>it happens.</h2>
+  <p class="section-intro">
+    From BBC studios to Cannes Lions to boardrooms. Where AI strategy meets real conversation.
+  </p>
+  <div class="speaking-photos">
+    <div class="speaking-photo">
+      <img src="images/ross-bbc-world-news.jpg" alt="BBC Business Live">
+      <div class="photo-caption">BBC Business Live</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-bbc-fake-advertising.jpg" alt="BBC World News">
+      <div class="photo-caption">BBC World News</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-adweek-europe.jpg" alt="Advertising Week Europe">
+      <div class="photo-caption">Advertising Week Europe</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-panel-discussion.jpg" alt="Panel Discussion">
+      <div class="photo-caption">Industry Panel</div>
+    </div>
+    <div class="speaking-photo">
+      <img src="images/ross-m6-cannes.jpg" alt="Cannes Lions">
+      <div class="photo-caption">Cannes Lions / M6</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="about-cta">
+  <div class="section-label">Work With Us</div>
+  <h2 class="section-title" style="margin:0 auto 20px;">Ready to talk?</h2>
+  <p class="section-intro" style="margin:0 auto 40px; text-align:center;">
+    Whether it's a board diagnostic, a team workshop, or a full AI strategy engagement —
+    we'd like to hear what you're working on.
+  </p>
+  <a href="index.html#contact" class="btn-primary">Start a Conversation →</a>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">G<em>alahad</em></div>
+      <div class="footer-tagline">Serious AI for serious decisions.</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="about.html">Our Team</a>
+      <a href="index.html#brands">Services</a>
+      <a href="index.html#method">The Method</a>
+      <a href="index.html#speaking">Speaking</a>
+      <a href="index.html#writing">Writing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Galahad. All rights reserved.</span>
+    <span>London · Global</span>
+  </div>
+</footer>
+
+</body>
+</html>
